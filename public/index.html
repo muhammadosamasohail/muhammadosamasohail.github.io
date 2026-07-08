@@ -43,7 +43,7 @@
     </div>
   </section>
   <section id="about">
-    <div class="container">
+    <div class="container reveal">
       <h2>About</h2>
       <p>I'm a product and growth professional who approaches marketing like an engineering problem: instrument it, attribute it, and obsess over how real users actually behave.</p>
       <p>At Autonomous, a B2B AI agency, I own the full marketing stack end to end. That ranges from scoping a server-side tracking architecture to recover attribution after iOS 14, to building AI content tooling that keeps brand voice consistent as output scales. I like the parts of growth most people hand off to someone else: the pipelines, the tracking, the automation underneath the content.</p>
@@ -55,8 +55,25 @@
     <div class="container">
       <h2>Case Studies</h2>
 
-      <article class="case-study">
+      <article class="case-study reveal">
         <h3>Turning Customer Feedback Into Product Signals</h3>
+        <div class="cs-diagram">
+          <svg viewBox="0 0 440 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram: reviews and Reddit data flow into NLP classification, producing product signals and ad copy">
+            <defs>
+              <marker id="arrow1" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                <path d="M0,0 L8,4 L0,8 Z" fill="#0a0a0a"/>
+              </marker>
+            </defs>
+            <rect x="4" y="30" width="120" height="40" fill="#ffffff" stroke="#0a0a0a" stroke-width="2"/>
+            <text x="64" y="54" font-family="IBM Plex Sans, sans-serif" font-size="12" fill="#0a0a0a" text-anchor="middle">G2 / Reddit / CSV</text>
+            <line x1="124" y1="50" x2="164" y2="50" stroke="#0a0a0a" stroke-width="2" marker-end="url(#arrow1)"/>
+            <rect x="164" y="20" width="120" height="60" fill="#0033ff" stroke="#0a0a0a" stroke-width="2"/>
+            <text x="224" y="54" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">NLP Classification</text>
+            <line x1="284" y1="50" x2="324" y2="50" stroke="#0a0a0a" stroke-width="2" marker-end="url(#arrow1)"/>
+            <rect x="324" y="30" width="112" height="40" fill="#ffffff" stroke="#0a0a0a" stroke-width="2"/>
+            <text x="380" y="54" font-family="IBM Plex Sans, sans-serif" font-size="12" fill="#0a0a0a" text-anchor="middle">Signals + Ad Copy</text>
+          </svg>
+        </div>
         <div class="cs-problem">
           <h4>Problem</h4>
           <p>B2B marketing agencies aggregate customer feedback by hand: copy-pasting G2 reviews, scanning Reddit threads, eyeballing competitor mentions. There's no scalable way to track share-of-voice or turn raw sentiment into decisions a product team can act on.</p>
@@ -79,8 +96,26 @@
         </div>
       </article>
 
-      <article class="case-study">
+      <article class="case-study reveal">
         <h3>Building Organic Presence From Zero</h3>
+        <div class="cs-diagram">
+          <svg viewBox="0 0 440 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram: solo creator feeds an automated production pipeline that publishes to LinkedIn and Instagram">
+            <defs>
+              <marker id="arrow2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                <path d="M0,0 L8,4 L0,8 Z" fill="#0a0a0a"/>
+              </marker>
+            </defs>
+            <rect x="4" y="30" width="110" height="40" fill="#ffffff" stroke="#0a0a0a" stroke-width="2"/>
+            <text x="59" y="54" font-family="IBM Plex Sans, sans-serif" font-size="12" fill="#0a0a0a" text-anchor="middle">Solo Creator</text>
+            <line x1="114" y1="50" x2="154" y2="50" stroke="#0a0a0a" stroke-width="2" marker-end="url(#arrow2)"/>
+            <rect x="154" y="20" width="140" height="60" fill="#0033ff" stroke="#0a0a0a" stroke-width="2"/>
+            <text x="224" y="48" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">Automated Pipeline</text>
+            <text x="224" y="64" font-family="IBM Plex Sans, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">FFmpeg / ElevenLabs / HeyGen</text>
+            <line x1="294" y1="50" x2="334" y2="50" stroke="#0a0a0a" stroke-width="2" marker-end="url(#arrow2)"/>
+            <rect x="334" y="30" width="102" height="40" fill="#ffffff" stroke="#0a0a0a" stroke-width="2"/>
+            <text x="385" y="54" font-family="IBM Plex Sans, sans-serif" font-size="12" fill="#0a0a0a" text-anchor="middle">LinkedIn / IG</text>
+          </svg>
+        </div>
         <div class="cs-problem">
           <h4>Problem</h4>
           <p>Autonomous had no organic presence in a crowded B2B AI market and no paid acquisition budget. Growth had to come entirely from owned content, with no team, no ad spend, and no existing audience to build on.</p>
@@ -103,8 +138,31 @@
         </div>
       </article>
 
-      <article class="case-study">
+      <article class="case-study reveal">
         <h3>Giving Leadership a Single View of DevOps Health</h3>
+        <div class="cs-diagram">
+          <svg viewBox="0 0 440 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram: eight data collections feed a PySpark ETL pipeline producing one unified view">
+            <defs>
+              <marker id="arrow3" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                <path d="M0,0 L8,4 L0,8 Z" fill="#0a0a0a"/>
+              </marker>
+            </defs>
+            <rect x="4" y="14" width="110" height="16" fill="#ffffff" stroke="#0a0a0a" stroke-width="1.5"/>
+            <rect x="4" y="34" width="110" height="16" fill="#ffffff" stroke="#0a0a0a" stroke-width="1.5"/>
+            <rect x="4" y="54" width="110" height="16" fill="#ffffff" stroke="#0a0a0a" stroke-width="1.5"/>
+            <rect x="4" y="74" width="110" height="16" fill="#ffffff" stroke="#0a0a0a" stroke-width="1.5"/>
+            <text x="59" y="26" font-family="IBM Plex Sans, sans-serif" font-size="10" fill="#0a0a0a" text-anchor="middle">Commits</text>
+            <text x="59" y="46" font-family="IBM Plex Sans, sans-serif" font-size="10" fill="#0a0a0a" text-anchor="middle">Deployments</text>
+            <text x="59" y="66" font-family="IBM Plex Sans, sans-serif" font-size="10" fill="#0a0a0a" text-anchor="middle">Incidents</text>
+            <text x="59" y="86" font-family="IBM Plex Sans, sans-serif" font-size="10" fill="#0a0a0a" text-anchor="middle">Financials (+4 more)</text>
+            <line x1="114" y1="50" x2="154" y2="50" stroke="#0a0a0a" stroke-width="2" marker-end="url(#arrow3)"/>
+            <rect x="154" y="20" width="120" height="60" fill="#0033ff" stroke="#0a0a0a" stroke-width="2"/>
+            <text x="214" y="54" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">PySpark ETL</text>
+            <line x1="274" y1="50" x2="314" y2="50" stroke="#0a0a0a" stroke-width="2" marker-end="url(#arrow3)"/>
+            <rect x="314" y="30" width="122" height="40" fill="#ffffff" stroke="#0a0a0a" stroke-width="2"/>
+            <text x="375" y="54" font-family="IBM Plex Sans, sans-serif" font-size="12" fill="#0a0a0a" text-anchor="middle">Unified View</text>
+          </svg>
+        </div>
         <div class="cs-problem">
           <h4>Problem</h4>
           <p>A software agency kept incident data, deployment logs, and project financials in three disconnected systems. Leadership had no unified view of DevOps health or true cost-per-project, and was effectively flying blind on which projects were quietly bleeding budget.</p>
@@ -129,7 +187,7 @@
     </div>
   </section>
   <section id="skills">
-    <div class="container">
+    <div class="container reveal">
       <h2>Skills</h2>
       <div class="skills-grid">
         <span class="skill-tag">Python</span>
@@ -153,11 +211,11 @@
     <div class="container">
       <h2>Testimonials</h2>
       <div class="testimonial-grid">
-        <blockquote class="testimonial">
+        <blockquote class="testimonial reveal">
           <p>"Osama consistently demonstrated a high level of dedication, support, and initiative in all tasks and projects. He has a natural talent for connecting with people, building trust, and creating positive energy around him."</p>
           <cite>Syeda Mahrukh Raza, Founder, Lean Outset (direct manager)</cite>
         </blockquote>
-        <blockquote class="testimonial">
+        <blockquote class="testimonial reveal">
           <p>"Osama is a very professional yet warm-hearted colleague, always yearning for professional and personal growth while sharing that growth with the people around him. Whatever organization he joins, he outshines through his work ethic, values, and commitment."</p>
           <cite>Ahmed Abdullah, Data &amp; BI Professional (AIESEC teammate)</cite>
         </blockquote>
@@ -165,7 +223,7 @@
     </div>
   </section>
   <section id="contact">
-    <div class="container">
+    <div class="container reveal">
       <h2>Contact</h2>
       <p>I'm currently open to product and growth roles and always glad to talk shop on analytics, attribution, or AI tooling. The fastest way to reach me is email, or connect with me on LinkedIn.</p>
       <div class="contact-links">
