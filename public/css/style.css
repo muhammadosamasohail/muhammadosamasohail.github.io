@@ -178,3 +178,11 @@ section {
   font-size: 18px;
   max-width: 560px;
 }
+
+#about {
+  border-top: 2px solid var(--color-text);
+}
+
+#about .container p {
+  max-width: 640px;
+}
