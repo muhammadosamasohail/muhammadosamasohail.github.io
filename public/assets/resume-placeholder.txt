@@ -1,0 +1,2 @@
+Replace this file: add your real resume as public/assets/resume.pdf
+The nav "Resume" link points to assets/resume.pdf — Task 11 will refuse to let the site deploy until that file exists.
