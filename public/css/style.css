@@ -164,3 +164,17 @@ section {
 
   .nav-links.is-open { display: flex; }
 }
+
+#hero {
+  padding-top: var(--space-6);
+  padding-bottom: var(--space-6);
+}
+
+.hero-inner {
+  max-width: 700px;
+}
+
+.hero-subline {
+  font-size: 18px;
+  max-width: 560px;
+}
