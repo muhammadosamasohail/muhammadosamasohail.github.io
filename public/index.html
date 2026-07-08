@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Name — Product Manager</title>
-  <meta name="description" content="Product Manager portfolio — case studies, skills, and background.">
+  <title>Muhammad Osama Sohail — Product &amp; Growth</title>
+  <meta name="description" content="Product and growth portfolio — case studies, skills, and background.">
 
-  <meta property="og:title" content="Your Name — Product Manager">
-  <meta property="og:description" content="Product Manager portfolio — case studies, skills, and background.">
+  <meta property="og:title" content="Muhammad Osama Sohail — Product &amp; Growth">
+  <meta property="og:description" content="Product and growth portfolio — case studies, skills, and background.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://portfolio-website.pages.dev">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Your Name — Product Manager">
-  <meta name="twitter:description" content="Product Manager portfolio — case studies, skills, and background.">
+  <meta name="twitter:title" content="Muhammad Osama Sohail — Product &amp; Growth">
+  <meta name="twitter:description" content="Product and growth portfolio — case studies, skills, and background.">
 
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230033ff'/%3E%3C/svg%3E">
 
@@ -24,7 +24,7 @@
 <body>
   <nav id="site-nav">
     <div class="container nav-inner">
-      <span class="nav-name">Your Name</span>
+      <span class="nav-name">Osama Sohail</span>
       <button id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
       <div class="nav-links">
         <a href="#about">About</a>
@@ -37,15 +37,18 @@
   </nav>
   <section id="hero">
     <div class="container hero-inner">
-      <h1>Product Manager who turns ambiguity into shipped, measurable outcomes.</h1>
-      <p class="hero-subline">I've spent the last few years leading 0-to-1 features from problem discovery through launch. Below are three case studies showing how I think, decide, and measure impact.</p>
+      <h1>I build marketing the way engineers build product — with systems, attribution, and users at the center.</h1>
+      <p class="hero-subline">Product and growth professional bridging analytics engineering and go-to-market. I turn messy signals — customer feedback, attribution data, content performance — into systems that ship.</p>
       <a class="btn" href="#case-studies">View Case Studies ↓</a>
     </div>
   </section>
   <section id="about">
     <div class="container">
       <h2>About</h2>
-      <p>[Placeholder — replace with your background: how you got into product management, the domains you've worked in, and what kind of problems you gravitate toward.]</p>
+      <p>I'm a product and growth professional who approaches marketing like an engineering problem: instrument it, attribute it, and obsess over how real users actually behave.</p>
+      <p>At Autonomous, a B2B AI agency, I own the full marketing stack end to end. That ranges from scoping a server-side tracking architecture to recover attribution after iOS 14, to building AI content tooling that keeps brand voice consistent as output scales. I like the parts of growth that most people treat as someone else's job — the pipelines, the tracking, the automation underneath the content.</p>
+      <p>My MSBA capstone grew out of a gap I kept hitting in practice: B2B agencies had no scalable way to turn customer feedback into product signals. So I built one — a live, open-source sentiment intelligence tool.</p>
+      <p>Before this, I worked in product operations (Agile delivery, UX research, journey mapping) at a startup studio, and started my career in relationship banking. That ground-level path taught me what most dashboards can't: where users actually drop off, and what growth really means at the unit level.</p>
     </div>
   </section>
   <section id="case-studies">
@@ -53,74 +56,74 @@
       <h2>Case Studies</h2>
 
       <article class="case-study">
-        <h3>[Placeholder — Case Study 1 Title]</h3>
+        <h3>Turning Customer Feedback Into Product Signals</h3>
         <div class="cs-problem">
           <h4>Problem</h4>
-          <p>[Placeholder — the business challenge, constraints, and your specific role in it.]</p>
+          <p>B2B marketing agencies aggregate customer feedback by hand — copy-pasting G2 reviews, scanning Reddit threads, eyeballing competitor mentions. There's no scalable way to track share-of-voice or convert raw sentiment into decisions a product team can act on. Insight stays trapped in tabs and spreadsheets.</p>
         </div>
         <div class="cs-process">
           <h4>Process</h4>
-          <p>[Placeholder — research done, alternatives considered, how you decided.]</p>
+          <p>I built an open-source sentiment intelligence dashboard that ingests Reddit API data, G2 and Capterra reviews, and CSV uploads. Every architecture choice traded against a constraint: DistilBERT over BERT-base for roughly 5x faster inference at under 3% accuracy loss, because the dashboard had to feel real-time; GoEmotions 27-category classification over binary polarity, because in B2B feedback the difference between frustration and disappointment implies a different product action; Selenium for G2 and Capterra, since both render client-side and block simple scrapers.</p>
         </div>
         <div class="cs-solution">
           <h4>Solution</h4>
-          <p>[Placeholder — what was actually shipped.]</p>
+          <p>The tool runs multi-model NLP classification to surface product gaps and generates LLM-drafted ad copy from the sentiment it finds. I moved inference to ONNX Runtime to drop PyTorch as a deploy dependency, and used Streamlit to iterate on the BI layer without pulling in a frontend engineer.</p>
         </div>
         <div class="cs-impact">
           <h4>Impact</h4>
-          <p class="cs-metric">[Placeholder — e.g. "+18% activation" — use relative percentages, not exact confidential figures.]</p>
+          <p class="cs-metric">80% classification accuracy, 0.35s inference latency.</p>
         </div>
         <div class="cs-learnings">
           <h4>Learnings</h4>
-          <p>[Placeholder — trade-offs made, what you'd do differently.]</p>
+          <p>The DistilBERT trade-off was the right call for a live dashboard, but the sub-3% accuracy gap is real — for a batch report where latency doesn't matter, I'd run the heavier model. Choosing the tool to fit the constraint, not the benchmark, was the lesson worth keeping.</p>
         </div>
       </article>
 
       <article class="case-study">
-        <h3>[Placeholder — Case Study 2 Title]</h3>
+        <h3>Building Organic Presence From Zero</h3>
         <div class="cs-problem">
           <h4>Problem</h4>
-          <p>[Placeholder]</p>
+          <p>Autonomous had no organic presence in a crowded B2B AI market and no paid acquisition budget to buy its way in. Growth had to come entirely from owned content — with no team, no ad spend, and no existing audience to lean on.</p>
         </div>
         <div class="cs-process">
           <h4>Process</h4>
-          <p>[Placeholder]</p>
+          <p>I owned go-to-market content end to end: research, scripting, shooting, editing, and publishing across LinkedIn and Instagram, solo. To make solo output sustainable, I treated the workflow as a system rather than a grind — building a Python pipeline on FFmpeg, ElevenLabs, HeyGen, and WhisperX to automate voice, avatar rendering, captioning, and compositing, which removed manual video editing from the loop entirely.</p>
         </div>
         <div class="cs-solution">
           <h4>Solution</h4>
-          <p>[Placeholder]</p>
+          <p>The result was a repeatable content engine: one person producing consistent, on-brand video and image content at a cadence that would normally need a small team. Alongside it, I wrote an SEO automation script that found and resubmitted 70+ pages orphaned during a WordPress-to-Wagtail CMS migration, recovering lost search equity.</p>
         </div>
         <div class="cs-impact">
           <h4>Impact</h4>
-          <p class="cs-metric">[Placeholder]</p>
+          <p class="cs-metric">In 90 days: 35K+ LinkedIn impressions, 1,100+ unique visitors, 400+ followers, plus 14.5K+ Instagram views and 780+ interactions.</p>
         </div>
         <div class="cs-learnings">
           <h4>Learnings</h4>
-          <p>[Placeholder]</p>
+          <p>Owning every step solo is what made the automation obvious — I only knew which parts to script because I'd felt every bottleneck by hand first. If I were scaling this, I'd build the pipeline earlier instead of proving the manual version first.</p>
         </div>
       </article>
 
       <article class="case-study">
-        <h3>[Placeholder — Case Study 3 Title]</h3>
+        <h3>Giving Leadership a Single View of DevOps Health</h3>
         <div class="cs-problem">
           <h4>Problem</h4>
-          <p>[Placeholder]</p>
+          <p>A software agency kept incident data, deployment logs, and project financials in three disconnected systems. Leadership had no unified view of DevOps health or true cost-per-project, and was effectively flying blind on which projects were quietly bleeding budget.</p>
         </div>
         <div class="cs-process">
           <h4>Process</h4>
-          <p>[Placeholder]</p>
+          <p>I designed an 8-collection Lakehouse schema on MongoDB Atlas and built a PySpark ETL pipeline on Databricks to join commits, deployments, incidents, and financials. I chose 8 separate collections over a monolithic schema deliberately — it enabled clean cross-domain joins through lookup transforms without coupling the schemas together, and I pushed aggregations into PySpark SQL where document-native queries were too slow to be usable.</p>
         </div>
         <div class="cs-solution">
           <h4>Solution</h4>
-          <p>[Placeholder]</p>
+          <p>The pipeline produced one coherent view spanning engineering and finance, exposing failure rates, recovery times, and per-project cost that had never sat in the same place before. That view turned a vague sense of "something's off" into specific, defensible numbers.</p>
         </div>
         <div class="cs-impact">
           <h4>Impact</h4>
-          <p class="cs-metric">[Placeholder]</p>
+          <p class="cs-metric">Surfaced a 66.67% change failure rate and one project consuming 3.5x the average budget — the analysis directly supported a recommended feature freeze, which leadership accepted.</p>
         </div>
         <div class="cs-learnings">
           <h4>Learnings</h4>
-          <p>[Placeholder]</p>
+          <p>The technical win was the schema design, but the real lesson was that the freeze got approved because the number was concrete and traceable back to source data. A defensible metric beats a sophisticated model when you need a decision made.</p>
         </div>
       </article>
     </div>
@@ -129,45 +132,42 @@
     <div class="container">
       <h2>Skills</h2>
       <div class="skills-grid">
-        <span class="skill-tag">Product Strategy</span>
-        <span class="skill-tag">Roadmapping</span>
-        <span class="skill-tag">User Research</span>
-        <span class="skill-tag">A/B Testing</span>
+        <span class="skill-tag">Python</span>
         <span class="skill-tag">SQL</span>
-        <span class="skill-tag">Figma</span>
-        <span class="skill-tag">Jira</span>
+        <span class="skill-tag">PySpark</span>
+        <span class="skill-tag">MongoDB</span>
+        <span class="skill-tag">Databricks</span>
+        <span class="skill-tag">NLP / ML</span>
+        <span class="skill-tag">Prompt Engineering</span>
+        <span class="skill-tag">Google Analytics</span>
+        <span class="skill-tag">Server-Side Tracking (CAPI / RudderStack / PostHog)</span>
+        <span class="skill-tag">Agile / Scrum</span>
+        <span class="skill-tag">User Journey Mapping</span>
         <span class="skill-tag">Stakeholder Management</span>
+        <span class="skill-tag">Market Research</span>
+        <span class="skill-tag">CRM (Apollo / Brevo)</span>
       </div>
     </div>
   </section>
   <section id="testimonials">
     <div class="container">
       <h2>Testimonials</h2>
-      <div class="testimonial-grid">
-        <blockquote class="testimonial">
-          <p>"[Placeholder — pull quote from a LinkedIn recommendation or manager feedback.]"</p>
-          <cite>— [Placeholder role, e.g. "Engineering Manager, cross-functional partner"]</cite>
-        </blockquote>
-        <blockquote class="testimonial">
-          <p>"[Placeholder — second pull quote.]"</p>
-          <cite>— [Placeholder role]</cite>
-        </blockquote>
-      </div>
+      <p>Recommendations from colleagues and collaborators are on the way and will be added here soon. In the meantime, I'm happy to connect you directly with past teammates and managers — just reach out and I'll make the introduction.</p>
     </div>
   </section>
   <section id="contact">
     <div class="container">
       <h2>Contact</h2>
-      <p>Open to Product Manager roles — happy to talk through any of the case studies above in more depth.</p>
+      <p>I'm currently open to product and growth roles and always glad to talk shop on analytics, attribution, or AI tooling. The fastest way to reach me is email, or connect with me on LinkedIn.</p>
       <div class="contact-links">
-        <a class="btn" href="mailto:you@example.com">Email Me</a>
-        <a class="btn btn-outline" href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="mailto:muhammadosamasohail99@gmail.com">Email Me</a>
+        <a class="btn btn-outline" href="https://linkedin.com/in/muhammadosamasohail" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </div>
   </section>
   <footer>
     <div class="container">
-      <p>&copy; 2026 Your Name.</p>
+      <p>&copy; 2026 Muhammad Osama Sohail.</p>
     </div>
   </footer>
   <script src="js/main.js" defer></script>
