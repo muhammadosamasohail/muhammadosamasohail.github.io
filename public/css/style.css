@@ -215,3 +215,20 @@ section {
   font-size: 24px;
   font-weight: 700;
 }
+
+#skills {
+  border-top: 2px solid var(--color-text);
+}
+
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.skill-tag {
+  border: 2px solid var(--color-text);
+  padding: var(--space-1) var(--space-2);
+  font-family: var(--font-heading);
+  font-size: 14px;
+}
