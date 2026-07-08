@@ -995,46 +995,48 @@ git commit -m "Document missing resume.pdf asset"
 
 ```bash
 cd public
-status=0
+check_status=0
 
 if grep -rq '\[Placeholder' .; then
   echo "FAIL: placeholder text still present in these locations:"
-  grep -rn '\[Placeholder' .
-  status=1
+  grep -rln '\[Placeholder' .
+  check_status=1
 else
   echo "PASS: no placeholder text remains"
 fi
 
 if grep -q 'mailto:you@example.com' index.html; then
   echo "FAIL: replace the mailto: address in the Contact section with your real email"
-  status=1
+  check_status=1
 else
   echo "PASS: mailto address updated"
 fi
 
 if grep -q 'linkedin.com/in/your-profile' index.html; then
   echo "FAIL: replace the LinkedIn URL in the Contact section with your real profile"
-  status=1
+  check_status=1
 else
   echo "PASS: LinkedIn URL updated"
 fi
 
 if grep -q '>Your Name<' index.html; then
   echo "FAIL: replace 'Your Name' in the nav/footer with your real name"
-  status=1
+  check_status=1
 else
   echo "PASS: name updated"
 fi
 
 if [ ! -f assets/resume.pdf ]; then
   echo "FAIL: add your real resume as public/assets/resume.pdf (the nav Resume link 404s without it)"
-  status=1
+  check_status=1
 else
   echo "PASS: resume.pdf present"
 fi
 
-exit $status
+exit $check_status
 ```
+
+Note: uses `check_status` rather than `status` — `status` is a read-only special variable in zsh and assigning to it errors out.
 
 - [ ] **Step 2: Fill in real content until Step 1 is all-PASS**
 
