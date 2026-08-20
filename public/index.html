@@ -81,9 +81,14 @@
       <div class="about-grid">
       <div class="about-copy">
       <p>I'm a product and growth person who cannot leave a number alone. When a metric looks good I want to know which query produced it, and when it looks bad I want exactly the same thing.</p>
-      <p>At Autonomous, a B2B AI agency, I own the marketing stack end to end. That has meant scoping a server-side tracking architecture to claw back attribution after iOS 14, and building AI content tooling that holds brand voice steady while output goes up. I like the parts of growth most people are glad to hand off: the pipelines, the tracking, the automation sitting underneath the content.</p>
-      <p>My MSBA capstone came straight out of something that kept bugging me at work. Agencies were reading customer feedback by hand, copy pasting reviews into spreadsheets, and calling that research. So I built a sentiment intelligence tool that does the reading instead.</p>
-      <p>Before this I worked in product operations at a startup studio, on Agile delivery, UX research and journey mapping, and I started out in relationship banking. Sitting across from actual customers for a living teaches you something a funnel chart will not, which is where people quietly give up and what one unit of growth genuinely costs.</p>
+      <p>At Autonomous, a B2B AI agency, I own the marketing stack end to end. That has meant scoping server-side tracking to claw back attribution after iOS 14, and building AI content tooling that holds brand voice steady while output climbs. I like the parts of growth most people are glad to hand off, which is the tracking and the pipelines sitting underneath the content.</p>
+      <ul class="about-path">
+        <li><strong>Autonomous</strong> B2B AI agency. Marketing stack, end to end.</li>
+        <li><strong>Lean Outset</strong> Startup studio. Product ops, Agile delivery, UX research, journey mapping.</li>
+        <li><strong>JS Bank</strong> Relationship banking, where I sat across from the customers.</li>
+        <li><strong>KSBL</strong> MSc Business Analytics. Capstone below.</li>
+      </ul>
+      <p>Banking is the part people skip past on my CV, and it is the part I lean on most. Sitting in front of customers all day shows you where they quietly give up, which is hard to see from a funnel chart.</p>
       </div>
       <figure class="headshot-frame">
         <img src="assets/headshot.jpg"
@@ -438,30 +443,33 @@
             <div class="fig-stat"><span class="fig-stat-value">780+</span><span class="fig-stat-label">Instagram interactions</span></div>
           </div>
         </div>
-        <div class="cs-role">
-          <h4>My Role</h4>
-          <p>Solo. I ran the research, scripting, shooting, editing, and publishing myself, then automated the production steps once I knew where the bottlenecks were.</p>
-        </div>
-        <div class="cs-problem">
-          <h4>Problem</h4>
-          <p>Autonomous had no organic presence in a crowded B2B AI market and no paid acquisition budget. Growth had to come entirely from owned content, with no team, no ad spend, and no existing audience to build on.</p>
-        </div>
-        <div class="cs-process">
-          <h4>Process</h4>
-          <p>I owned go-to-market content end to end: research, scripting, shooting, editing, and publishing across LinkedIn and Instagram, solo. To keep that up long-term, I built a <a href="https://github.com/muhammadosamasohail/avatar-pipeline" target="_blank" rel="noopener">Python pipeline</a> on FFmpeg, ElevenLabs, HeyGen, and WhisperX that automated voice, avatar rendering, captioning, and compositing, cutting manual video editing out of the process entirely.</p>
-        </div>
-        <div class="cs-solution">
-          <h4>Solution</h4>
-          <p>The result was a repeatable content engine: one person producing consistent, on-brand video and image content at a cadence that would normally need a small team. Alongside it, I wrote an SEO automation script that found and resubmitted 70+ pages orphaned during a WordPress-to-Wagtail CMS migration, recovering lost search equity.</p>
-        </div>
         <div class="cs-impact">
           <h4>Impact</h4>
-          <p class="cs-metric">In 90 days: 35K+ LinkedIn impressions, 1,100+ unique visitors, 400+ followers, plus 14.5K+ Instagram views and 780+ interactions.</p>
+          <p class="cs-metric">A standing start turned into a content engine one person can actually keep running.</p>
         </div>
-        <div class="cs-learnings">
-          <h4>Learnings</h4>
-          <p>Owning every step solo is what made the automation obvious: I only knew which parts to script because I'd felt every bottleneck by hand first. If I were scaling this again, I'd build the pipeline earlier instead of proving the manual version first.</p>
-        </div>
+        <details class="cs-more">
+          <summary>Read the full case study<span class="visually-hidden">: Building Organic Presence From Zero</span></summary>
+          <div class="cs-role">
+            <h4>My Role</h4>
+            <p>Solo, from research through to publishing. Once I had felt every bottleneck by hand, I automated the production steps.</p>
+          </div>
+          <div class="cs-problem">
+            <h4>Problem</h4>
+            <p>Autonomous had no organic presence in a crowded B2B AI market and no paid acquisition budget. Growth had to come entirely from owned content, with no team, no ad spend, and no existing audience to build on.</p>
+          </div>
+          <div class="cs-process">
+            <h4>Process</h4>
+            <p>I owned go-to-market content across LinkedIn and Instagram, solo. To keep that up long-term, I built a <a href="https://github.com/muhammadosamasohail/avatar-pipeline" target="_blank" rel="noopener">Python pipeline</a> on FFmpeg, ElevenLabs, HeyGen, and WhisperX that automated voice, avatar rendering, captioning, and compositing, cutting manual video editing out of the process entirely.</p>
+          </div>
+          <div class="cs-solution">
+            <h4>Solution</h4>
+            <p>The result was a repeatable content engine: one person producing consistent, on-brand video and image content at a cadence that would normally need a small team. Alongside it, I wrote an SEO automation script that found and resubmitted 70+ pages orphaned during a WordPress-to-Wagtail CMS migration, recovering lost search equity.</p>
+          </div>
+          <div class="cs-learnings">
+            <h4>Learnings</h4>
+            <p>Owning every step solo is what made the automation obvious: I only knew which parts to script because I'd felt every bottleneck by hand first. If I were scaling this again, I'd build the pipeline earlier instead of proving the manual version first.</p>
+          </div>
+        </details>
       </article>
       <article class="case-study reveal">
         <h3>Turning Customer Feedback Into Product Signals</h3>
@@ -480,30 +488,33 @@
             <div class="fig-stat"><span class="fig-stat-value">3</span><span class="fig-stat-label">Feedback sources</span></div>
           </div>
         </div>
-        <div class="cs-role">
-          <h4>My Role</h4>
-          <p>Solo build. I owned the architecture, model selection, the Reddit and review-site scrapers, the ONNX inference layer, and the Streamlit interface. This is my MSBA capstone.</p>
-        </div>
-        <div class="cs-problem">
-          <h4>Problem</h4>
-          <p>B2B marketing agencies aggregate customer feedback by hand: copy-pasting G2 reviews, scanning Reddit threads, eyeballing competitor mentions. There's no scalable way to track share-of-voice or turn raw sentiment into decisions a product team can act on.</p>
-        </div>
-        <div class="cs-process">
-          <h4>Process</h4>
-          <p>I built a sentiment intelligence dashboard that ingests Reddit API data, G2 and Capterra reviews, and CSV uploads. Every architecture choice traded against a constraint: DistilBERT over BERT-base for roughly 5x faster inference at under 3% accuracy loss, because the dashboard had to feel real-time; GoEmotions 27-category classification over binary polarity, because in B2B feedback the difference between frustration and disappointment implies a different product action; Selenium for G2 and Capterra, since both render client-side and block simple scrapers.</p>
-        </div>
-        <div class="cs-solution">
-          <h4>Solution</h4>
-          <p>The tool runs multi-model NLP classification to surface product gaps and generates LLM-drafted ad copy from the sentiment it finds. I moved inference to ONNX Runtime to drop PyTorch as a deploy dependency, and used Streamlit to iterate on the BI layer without pulling in a frontend engineer.</p>
-        </div>
         <div class="cs-impact">
           <h4>Impact</h4>
-          <p class="cs-metric">80% classification accuracy, 0.35s inference latency.</p>
+          <p class="cs-metric">Accurate enough to point at a real product gap, and fast enough that the dashboard feels live.</p>
         </div>
-        <div class="cs-learnings">
-          <h4>Learnings</h4>
-          <p>The DistilBERT trade-off was right for a live dashboard, but the sub-3% accuracy gap is real. For a batch report where latency doesn't matter, I'd run the heavier model instead. The point was matching the tool to the constraint, not the benchmark.</p>
-        </div>
+        <details class="cs-more">
+          <summary>Read the full case study<span class="visually-hidden">: Turning Customer Feedback Into Product Signals</span></summary>
+          <div class="cs-role">
+            <h4>My Role</h4>
+            <p>Solo build. I owned the architecture, model selection, the Reddit and review-site scrapers, the ONNX inference layer, and the Streamlit interface. This is my MSBA capstone.</p>
+          </div>
+          <div class="cs-problem">
+            <h4>Problem</h4>
+            <p>B2B marketing agencies aggregate customer feedback by hand: copy-pasting G2 reviews, scanning Reddit threads, eyeballing competitor mentions. There's no scalable way to track share-of-voice or turn raw sentiment into decisions a product team can act on.</p>
+          </div>
+          <div class="cs-process">
+            <h4>Process</h4>
+            <p>I built a sentiment intelligence dashboard that ingests Reddit API data, G2 and Capterra reviews, and CSV uploads. Every architecture choice traded against a constraint: DistilBERT over BERT-base for roughly 5x faster inference at under 3% accuracy loss, because the dashboard had to feel real-time; GoEmotions 27-category classification over binary polarity, because in B2B feedback the difference between frustration and disappointment implies a different product action; Selenium for G2 and Capterra, since both render client-side and block simple scrapers.</p>
+          </div>
+          <div class="cs-solution">
+            <h4>Solution</h4>
+            <p>The tool runs multi-model NLP classification to surface product gaps and generates LLM-drafted ad copy from the sentiment it finds. I moved inference to ONNX Runtime to drop PyTorch as a deploy dependency, and used Streamlit to iterate on the BI layer without pulling in a frontend engineer.</p>
+          </div>
+          <div class="cs-learnings">
+            <h4>Learnings</h4>
+            <p>The DistilBERT trade-off was right for a live dashboard, but the sub-3% accuracy gap is real. For a batch report where latency doesn't matter, I'd run the heavier model instead. The point was matching the tool to the constraint, not the benchmark.</p>
+          </div>
+        </details>
       </article>
       <article class="case-study reveal">
         <h3>Giving Leadership a Single View of DevOps Health</h3>
@@ -534,30 +545,33 @@
             <div class="fig-stat"><span class="fig-stat-value">5 to 7</span><span class="fig-stat-label">Deploys a week</span></div>
           </div>
         </div>
-        <div class="cs-role">
-          <h4>My Role</h4>
-          <p>Solo. A graduate course project that required a real client, so I used the software agency I work at. I designed the schema, built the pipeline, and presented the findings.</p>
-        </div>
-        <div class="cs-problem">
-          <h4>Problem</h4>
-          <p>A software agency kept incident data, deployment logs, and project financials in three disconnected systems. Leadership had no unified view of DevOps health or true cost-per-project, and was effectively flying blind on which projects were quietly bleeding budget.</p>
-        </div>
-        <div class="cs-process">
-          <h4>Process</h4>
-          <p>I designed an 8-collection Lakehouse schema on MongoDB Atlas and built a PySpark ETL pipeline on Databricks to join commits, deployments, incidents, and financials. I chose 8 separate collections over one monolithic schema on purpose: it allowed clean cross-domain joins through lookup transforms without coupling the schemas together, and I pushed aggregations into PySpark SQL where document-native queries were too slow to be usable.</p>
-        </div>
-        <div class="cs-solution">
-          <h4>Solution</h4>
-          <p>The pipeline produced one coherent view spanning engineering and finance, exposing failure rates, recovery times, and per-project cost that had never sat in the same place before. That view turned a vague sense of "something's off" into specific, defensible numbers.</p>
-        </div>
         <div class="cs-impact">
           <h4>Impact</h4>
-          <p class="cs-metric">Surfaced a 66.67% change failure rate against 5 to 7 deploys a week, a 113 minute average recovery time, and one project burning $10,623 against a roughly $3K average. On that evidence I recommended a feature freeze.</p>
+          <p class="cs-metric">On that evidence I recommended a feature freeze on the flagged project.</p>
         </div>
-        <div class="cs-learnings">
-          <h4>Learnings</h4>
-          <p>The technical win was the schema design. The lesson that stuck was about traceability. A finding you can walk back to specific source rows survives being argued with. One you cannot does not, however good the model behind it is.</p>
-        </div>
+        <details class="cs-more">
+          <summary>Read the full case study<span class="visually-hidden">: Giving Leadership a Single View of DevOps Health</span></summary>
+          <div class="cs-role">
+            <h4>My Role</h4>
+            <p>Solo. A graduate course project that required a real client, so I used the software agency I work at. I designed the schema, built the pipeline, and presented the findings.</p>
+          </div>
+          <div class="cs-problem">
+            <h4>Problem</h4>
+            <p>A software agency kept incident data, deployment logs, and project financials in three disconnected systems. Leadership had no unified view of DevOps health or true cost-per-project, and was effectively flying blind on which projects were quietly bleeding budget.</p>
+          </div>
+          <div class="cs-process">
+            <h4>Process</h4>
+            <p>I designed an 8-collection Lakehouse schema on MongoDB Atlas and built a PySpark ETL pipeline on Databricks to join commits, deployments, incidents, and financials. I chose 8 separate collections over one monolithic schema on purpose: it allowed clean cross-domain joins through lookup transforms without coupling the schemas together, and I pushed aggregations into PySpark SQL where document-native queries were too slow to be usable.</p>
+          </div>
+          <div class="cs-solution">
+            <h4>Solution</h4>
+            <p>The pipeline produced one coherent view spanning engineering and finance, exposing failure rates, recovery times, and per-project cost that had never sat in the same place before. That view turned a vague sense of "something's off" into specific, defensible numbers.</p>
+          </div>
+          <div class="cs-learnings">
+            <h4>Learnings</h4>
+            <p>The technical win was the schema design. The lesson that stuck was about traceability. A finding you can walk back to specific source rows survives being argued with. One you cannot does not, however good the model behind it is.</p>
+          </div>
+        </details>
       </article>
 
 

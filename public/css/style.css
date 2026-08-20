@@ -902,3 +902,75 @@ img, video, iframe, svg {
     padding: var(--space-2);
   }
 }
+
+/* The career path reads faster as a list than as a paragraph, and it carries
+   the same facts in a third of the words. */
+.about-path {
+  list-style: none;
+  margin: 0 0 var(--space-3) 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-1);
+  max-width: 640px;
+}
+
+.about-path li {
+  border-left: 3px solid var(--color-accent);
+  padding-left: var(--space-2);
+  font-size: 15px;
+}
+
+.about-path strong {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  display: block;
+}
+
+/* Case studies open on the gist: title, badges, figure, impact. The narrative
+   lives behind a native details element, so it needs no JavaScript, stays
+   keyboard operable, and still works if scripts fail. */
+.cs-more {
+  margin-top: var(--space-2);
+  border-top: 2px solid var(--color-text);
+}
+
+.cs-more > summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-2) 0;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.cs-more > summary::-webkit-details-marker {
+  display: none;
+}
+
+/* A drawn indicator rather than the default triangle, to match the hard edges. */
+.cs-more > summary::after {
+  content: "+";
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1;
+  border: 2px solid var(--color-accent);
+  padding: 1px 5px 3px;
+}
+
+.cs-more[open] > summary::after {
+  content: "\2013";
+}
+
+.cs-more > summary:hover {
+  text-decoration: underline;
+}
+
+.cs-more > div:first-of-type {
+  margin-top: var(--space-1);
+}
