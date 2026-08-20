@@ -19,7 +19,7 @@ See `HANDOFF.md` for full project state, open items, and history. Read it at the
 - `origin` is `muhammadosamasohail.github.io`, `pages-old` is `portfolio-website`.
 - Two `gh` accounts exist on this machine: `muhammadosamasohail` (correct) and `osamasohaila8s` (inactive). Run `gh auth status` and confirm `muhammadosamasohail` is active before any push.
 - The URL is hardcoded in six places: `og:url`, `og:image`, `twitter:image`, `canonical`,
-  `robots.txt`, `sitemap.xml`, plus the text printed on `assets/og-image.png`. Change all of them together.
+  `robots.txt`, `sitemap.xml`, plus the text printed on `assets/og-card.png`. Change all of them together.
 
 ## Design (locked)
 - Swiss/International style: white bg `#ffffff`, near-black text `#0a0a0a`, cobalt accent `#0033ff`.

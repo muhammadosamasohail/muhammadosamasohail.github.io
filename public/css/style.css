@@ -39,9 +39,9 @@ h1, h2, h3 {
   margin: 0 0 var(--space-2) 0;
 }
 
-h1 { font-size: 48px; }
-h2 { font-size: 32px; }
-h3 { font-size: 20px; }
+h1 { font-size: clamp(28px, 7vw, 48px); }
+h2 { font-size: clamp(24px, 5vw, 32px); }
+h3 { font-size: clamp(18px, 4vw, 20px); }
 
 p { margin: 0 0 var(--space-2) 0; }
 
@@ -181,7 +181,7 @@ section {
 }
 
 .hero-subline {
-  font-size: 18px;
+  font-size: clamp(16px, 3.5vw, 18px);
   max-width: 560px;
 }
 
@@ -246,6 +246,8 @@ section {
   font-family: var(--font-heading);
   font-weight: 500;
   font-size: 14px;
+  max-width: 100%;
+  overflow-wrap: break-word;
   transition: background-color 0.15s ease, color 0.15s ease;
 }
 
@@ -528,9 +530,10 @@ footer {
 }
 
 .li-embed {
+  width: 100%;
   max-width: 504px;
+  height: 399px;
   border: 2px solid var(--color-text);
-  aspect-ratio: 504 / 399;
 }
 
 .li-embed iframe {
@@ -554,5 +557,31 @@ footer {
 
   .clip-video {
     transition: none;
+  }
+}
+
+/* LinkedIn's compact card needs vertical room once the width drops below its
+   designed 504px, otherwise the player and caption get clipped. */
+@media (max-width: 560px) {
+  .li-embed {
+    height: 460px;
+  }
+}
+
+/* Nothing should ever scroll the page sideways. */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+img, video, iframe, svg {
+  max-width: 100%;
+}
+
+/* At 320px the 16px gap forced a single column, so seventeen clips became a
+   very long stack of oversized tiles. A tighter gap keeps two columns. */
+@media (max-width: 400px) {
+  .clip-grid {
+    gap: 8px;
   }
 }
