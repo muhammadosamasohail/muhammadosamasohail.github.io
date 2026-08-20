@@ -421,3 +421,34 @@ footer {
   top: var(--space-1);
   text-decoration: none;
 }
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: var(--space-4);
+  align-items: start;
+}
+
+.headshot-frame {
+  margin: 0;
+  border: 2px solid var(--color-text);
+  box-shadow: 12px 12px 0 var(--color-accent);
+  line-height: 0;
+}
+
+.headshot-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 720px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .headshot-frame {
+    max-width: 240px;
+    box-shadow: 8px 8px 0 var(--color-accent);
+  }
+}
