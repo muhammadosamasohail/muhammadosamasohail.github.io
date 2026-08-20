@@ -532,20 +532,6 @@ footer {
   padding: 4px 8px;
 }
 
-.li-embed {
-  width: 100%;
-  max-width: 504px;
-  height: 399px;
-  border: 2px solid var(--color-text);
-}
-
-.li-embed iframe {
-  display: block;
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-
 @media (max-width: 720px) {
   .clip-grid {
     grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
@@ -560,14 +546,6 @@ footer {
 
   .clip-video {
     transition: none;
-  }
-}
-
-/* LinkedIn's compact card needs vertical room once the width drops below its
-   designed 504px, otherwise the player and caption get clipped. */
-@media (max-width: 560px) {
-  .li-embed {
-    height: 460px;
   }
 }
 
@@ -713,6 +691,10 @@ img, video, iframe, svg {
 
 .clip-label {
   right: 32px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .clip-note {
@@ -740,4 +722,15 @@ img, video, iframe, svg {
   width: 0;
   height: 0;
   overflow: hidden;
+}
+
+/* The LinkedIn piece is landscape, so it gets its own wider tile rather than
+   being squeezed into the 9:16 grid. */
+.clip-wide {
+  aspect-ratio: 16 / 9;
+  max-width: 560px;
+}
+
+.clip-grid-wide {
+  display: block;
 }
