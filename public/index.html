@@ -70,16 +70,24 @@
   <main id="main">
   <section id="hero">
     <div class="container hero-inner">
+        <figure class="hero-portrait">
+          <img src="assets/headshot.jpg"
+               srcset="assets/headshot.jpg 440w, assets/headshot@2x.jpg 880w"
+               sizes="(max-width: 720px) 120px, 280px"
+               width="440" height="440"
+               alt="Muhammad Osama Sohail"
+               loading="eager" fetchpriority="high" decoding="async">
+        </figure>
+      <div class="hero-copy">
       <h1>I treat marketing like a product: instrumented, attributed, and built around how users actually behave.</h1>
       <p class="hero-subline">I work between analytics engineering and go-to-market. In practice that makes me the person who notices the dashboard and the CRM disagree, and then goes looking for where the data leaked out.</p>
       <a class="btn" href="#case-studies">View Case Studies ↓</a>
+      </div>
     </div>
   </section>
   <section id="about">
     <div class="container reveal">
       <h2>About</h2>
-      <div class="about-grid">
-      <div class="about-copy">
       <p>I'm a product and growth person who cannot leave a number alone. When a metric looks good I want to know which query produced it, and when it looks bad I want exactly the same thing.</p>
       <p>At Autonomous, a B2B AI agency, I own the marketing stack end to end. That has meant scoping server-side tracking to claw back attribution after iOS 14, and building AI content tooling that holds brand voice steady while output climbs. I like the parts of growth most people are glad to hand off, which is the tracking and the pipelines sitting underneath the content.</p>
       <ul class="about-path">
@@ -89,16 +97,6 @@
         <li><strong>KSBL</strong> MSc Business Analytics. Capstone below.</li>
       </ul>
       <p>Banking is the part people skip past on my CV, and it is the part I lean on most. Sitting in front of customers all day shows you where they quietly give up, which is hard to see from a funnel chart.</p>
-      </div>
-      <figure class="headshot-frame">
-        <img src="assets/headshot.jpg"
-             srcset="assets/headshot.jpg 440w, assets/headshot@2x.jpg 880w"
-             sizes="(max-width: 720px) 60vw, 300px"
-             width="440" height="440"
-             alt="Muhammad Osama Sohail"
-             loading="lazy" decoding="async">
-      </figure>
-      </div>
     </div>
   </section>
   <section id="content">

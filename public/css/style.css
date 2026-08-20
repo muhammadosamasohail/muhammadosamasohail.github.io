@@ -177,7 +177,50 @@ section {
 }
 
 .hero-inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+  align-items: start;
+}
+
+.hero-copy {
   max-width: 700px;
+}
+
+/* Kept deliberately small on phones so the headline is not pushed under the
+   fold by the portrait sitting above it. */
+.hero-portrait {
+  margin: 0;
+  width: 120px;
+  border: 2px solid var(--color-text);
+  box-shadow: 10px 10px 0 var(--color-accent);
+  line-height: 0;
+}
+
+.hero-portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Two columns only once the text column can still hold a 48px headline. The
+   portrait column flexes so the 760 to 900px band is not cramped. */
+@media (min-width: 760px) {
+  .hero-inner {
+    grid-template-columns: 1fr minmax(180px, 260px);
+    gap: var(--space-4);
+    align-items: center;
+  }
+
+  .hero-copy {
+    order: 1;
+  }
+
+  .hero-portrait {
+    order: 2;
+    width: 100%;
+    box-shadow: 14px 14px 0 var(--color-accent);
+  }
 }
 
 .hero-subline {
@@ -413,36 +456,8 @@ footer {
   text-decoration: none;
 }
 
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 300px;
-  gap: var(--space-4);
-  align-items: start;
-}
-
-.headshot-frame {
-  margin: 0;
-  border: 2px solid var(--color-text);
-  box-shadow: 12px 12px 0 var(--color-accent);
-  line-height: 0;
-}
-
-.headshot-frame img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
 @media (max-width: 720px) {
-  .about-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .headshot-frame {
-    max-width: 240px;
-    box-shadow: 8px 8px 0 var(--color-accent);
-  }
-}
+    }
 
 #content {
   border-top: 2px solid var(--color-text);
