@@ -48,7 +48,9 @@ if ('IntersectionObserver' in window && !prefersReducedMotion) {
         clip.classList.add('is-playing');
       } else {
         video.pause();
+        video.muted = true;
         clip.classList.remove('is-playing');
+        resetSoundButton(clip);
       }
     });
   }, { threshold: 0.4 });
@@ -57,3 +59,46 @@ if ('IntersectionObserver' in window && !prefersReducedMotion) {
     clipObserver.observe(clip);
   });
 }
+
+
+function resetSoundButton(clip) {
+  var btn = clip.querySelector('.clip-sound');
+  if (!btn) return;
+  btn.setAttribute('aria-pressed', 'false');
+  btn.setAttribute('aria-label', btn.getAttribute('data-off'));
+}
+
+// Sound is opt in, one clip at a time. Autoplay is only permitted while muted,
+// so unmuting has to hang off a real click.
+document.querySelectorAll('.clip-sound').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var clip = btn.closest('.clip');
+    var video = clip.querySelector('.clip-video');
+    if (!video) return;
+
+    var turningOn = btn.getAttribute('aria-pressed') !== 'true';
+
+    if (turningOn) {
+      document.querySelectorAll('.clip').forEach(function (other) {
+        if (other === clip) return;
+        var v = other.querySelector('.clip-video');
+        if (v) v.muted = true;
+        resetSoundButton(other);
+      });
+
+      if (!video.getAttribute('src')) {
+        video.setAttribute('src', video.getAttribute('data-src'));
+      }
+      video.muted = false;
+      var p = video.play();
+      if (p && p.catch) { p.catch(function () {}); }
+      clip.classList.add('is-playing');
+      btn.setAttribute('aria-pressed', 'true');
+      btn.setAttribute('aria-label', btn.getAttribute('data-on'));
+    } else {
+      video.muted = true;
+      btn.setAttribute('aria-pressed', 'false');
+      btn.setAttribute('aria-label', btn.getAttribute('data-off'));
+    }
+  });
+});
