@@ -2,8 +2,6 @@
 
 Single-page static portfolio for Muhammad Osama Sohail (product/growth job search). Zero cost. No backend, no build step, no framework — plain HTML/CSS/JS only. User does not write code; Claude builds everything.
 
-See `HANDOFF.md` for full project state, open items, and history. Read it at the start of any session here.
-
 ## Structure
 - `public/` — deployed (Cloudflare Pages output dir). Only this gets served.
 - `docs/` — NEVER deployed. Superpowers specs/plans live here.

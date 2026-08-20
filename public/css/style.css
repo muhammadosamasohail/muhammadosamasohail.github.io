@@ -989,3 +989,50 @@ img, video, iframe, svg {
 .cs-more > div:first-of-type {
   margin-top: var(--space-1);
 }
+
+/* Brand marks drawn in the site palette rather than brand colours, so the nav
+   stays two inks plus cobalt. Hard edged squares, consistent with the toggle. */
+.nav-social {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.nav-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 2px solid var(--color-text);
+  color: var(--color-text);
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.nav-icon:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #ffffff;
+  text-decoration: none;
+}
+
+@media (max-width: 720px) {
+  .nav-social {
+    padding: var(--space-1) 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-icon {
+    transition: none;
+  }
+}
+
+/* Just above the hamburger breakpoint the nav is 9px too wide once the two
+   brand buttons are in. A tighter gap in that band fixes it without moving
+   the breakpoint. */
+@media (min-width: 721px) and (max-width: 820px) {
+  .nav-links {
+    gap: var(--space-2);
+  }
+}
