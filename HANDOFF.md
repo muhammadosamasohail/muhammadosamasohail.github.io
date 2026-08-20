@@ -77,7 +77,7 @@ Hero → About → Case Studies (3) → Skills → Testimonials → Contact → 
 Problem/Context → Process → Solution → **Impact (bolded metric)** → Learnings.
 
 The 3 case studies (all real content):
-1. **Open-source AI sentiment analysis tool** (MSBA capstone) — 80% classification accuracy, 0.35s inference latency.
+1. **AI sentiment analysis tool** (MSBA capstone, solo) - 80% classification accuracy, 0.35s inference latency. Not public: the code is not on this machine and no repo exists on the account, so the word "open-source" was removed from the site on 2026-08-21. Re-add it only if the repo is actually published.
 2. **Autonomous organic social growth from zero** — 35K+ LinkedIn impressions, 1,100+ visitors, 400+ followers, 14.5K+ Instagram views in 90 days.
 3. **DevOps performance/financial audit data pipeline** (graduate course project, client was his own employer) - surfaced a 66.67% change failure rate, 113-min average recovery, and a 3.5x budget overrun, and recommended a feature freeze. **No freeze was ever accepted or actioned.** Earlier copy claimed leadership accepted it; corrected 2026-08-21.
 
@@ -200,8 +200,8 @@ Resolved from section 7: headshot (item 1), subdomain naming (item 2), og:url (i
 404 behavior (item 6).
 
 Still open:
-- The site calls the capstone "open-source" in About and in case study 1, but no public
-  capstone repo exists on the account. Either publish it or drop the word.
+- RESOLVED 2026-08-21. The word "open-source" was dropped from both places. If the capstone
+  repo is ever published, the claim can go back, and the case study should link it.
 - RESOLVED 2026-08-21. The owner confirmed the DevOps work was a graduate course project
   requiring a client, for which he used his own employer, and that the acceptance claim was
   false. The claim was removed and the real audit findings were added in its place.
