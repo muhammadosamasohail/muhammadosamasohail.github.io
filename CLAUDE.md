@@ -10,9 +10,16 @@ See `HANDOFF.md` for full project state, open items, and history. Read it at the
 - Do not change the Cloudflare output dir from `public`; `docs/` must stay unreachable.
 
 ## Deploy
-- Hosting: Cloudflare Pages via GitHub git integration. Push to `main` auto-deploys.
+- Primary: GitHub Pages at `https://muhammadosamasohail.github.io/`, built by
+  `.github/workflows/pages.yml`, which uploads only `public/` so `docs/` is never served.
+- Mirror: Cloudflare Pages at `https://portfolio-website-4fm.pages.dev/`, still live so old
+  links keep working. Its canonical tag points at the github.io URL.
+- Two remotes. Push BOTH on every change or the two hosts drift:
+  `git push origin main && git push pages-old main`
+- `origin` is `muhammadosamasohail.github.io`, `pages-old` is `portfolio-website`.
 - Two `gh` accounts exist on this machine: `muhammadosamasohail` (correct) and `osamasohaila8s` (inactive). Run `gh auth status` and confirm `muhammadosamasohail` is active before any push.
-- Live URL: `https://portfolio-website-4fm.pages.dev/`
+- The URL is hardcoded in six places: `og:url`, `og:image`, `twitter:image`, `canonical`,
+  `robots.txt`, `sitemap.xml`, plus the text printed on `assets/og-image.png`. Change all of them together.
 
 ## Design (locked)
 - Swiss/International style: white bg `#ffffff`, near-black text `#0a0a0a`, cobalt accent `#0033ff`.

@@ -17,11 +17,11 @@ The user is not writing any code. Claude builds everything ("you're building eve
 | Item | Value |
 |------|-------|
 | Local repo | `/Users/muhammadosamasohail/portfolio-website` (git initialized, branch `main`, no other branches) |
-| GitHub repo | `https://github.com/muhammadosamasohail/portfolio-website` |
+| GitHub repo | `https://github.com/muhammadosamasohail/muhammadosamasohail.github.io` (origin) and `.../portfolio-website` (pages-old, mirror) |
 | GitHub account | `muhammadosamasohail` |
-| Hosting | Cloudflare Pages via GitHub git integration (push to `main` auto-deploys) |
+| Hosting | GitHub Pages (primary, via `.github/workflows/pages.yml`) plus Cloudflare Pages (mirror) |
 | Cloudflare output dir | `public` (NOT `/`) — set deliberately so `docs/` is never served publicly |
-| Live URL | `https://portfolio-website-4fm.pages.dev/` |
+| Live URL | `https://muhammadosamasohail.github.io/` (mirror still at `https://portfolio-website-4fm.pages.dev/`) |
 
 ### GitHub CLI warning
 The machine has **two** `gh` CLI accounts logged in:
@@ -171,3 +171,41 @@ Task 12 verification confirmed the site returns 200, and a direct `docs/` path a
 3. Confirm `gh auth status` shows `muhammadosamasohail` active before any push.
 4. Pick up at §7 Outstanding / Open Items.
 5. Consult `docs/superpowers/specs/2026-07-08-pm-portfolio-design.md` and `docs/superpowers/plans/2026-07-08-pm-portfolio-implementation.md` for authoritative detail on anything not covered here.
+
+---
+
+## 9. Update log, 2026-08-21
+
+Audited the live site against WCAG 2.2, web.dev font guidance, and NN/g portfolio
+research, then shipped the gaps. Resolved several items from section 7.
+
+Shipped:
+- Keyboard focus rings. The site had none, failing WCAG 2.4.7 and 2.4.11. Skip link
+  and a `<main>` landmark added at the same time.
+- Font payload cut from 171.4 KB to 129.7 KB by dropping IBM Plex Sans 600, which no
+  rule ever used. `.case-study h4` and `.skill-tag` were asking for Space Grotesk 400,
+  which was never loaded, so they rendered a synthesized weight; both now specify 500.
+- Metric-matched fallback `@font-face` rules, with size-adjust and override values
+  computed from the real font binaries using fontTools.
+- Headshot wired into About. 2 MB source PNG became 17 KB and 58 KB JPEGs served via
+  srcset, below the fold, lazy, with fixed dimensions so it cannot shift layout.
+- "My Role" block on all three case studies. Confirmed by the owner: capstone solo,
+  DevOps a solo graduate academic project scoped for his employer, growth work solo.
+- `404.html`. Unmatched paths previously returned 200 with the home page.
+- og:image, canonical, Person JSON-LD, robots.txt, sitemap.xml.
+- Primary URL moved to `muhammadosamasohail.github.io`. GitHub linked from Contact,
+  footer, and JSON-LD sameAs. The automation case study links the real avatar-pipeline repo.
+
+Resolved from section 7: headshot (item 1), subdomain naming (item 2), og:url (item 3),
+404 behavior (item 6).
+
+Still open:
+- The site calls the capstone "open-source" in About and in case study 1, but no public
+  capstone repo exists on the account. Either publish it or drop the word.
+- The DevOps case study says leadership accepted a recommended feature freeze. If that
+  project was academic, confirm the freeze actually happened before an interviewer asks.
+- Real metrics available but unused in the DevOps Impact block: 113-min average recovery
+  time, 5 to 7 deploys per week, $10,623 versus roughly $3K average project budget.
+- PageSpeed Insights was never run. The public API quota was exhausted and there is no
+  Chrome on this machine for local Lighthouse.
+- Case study visuals are still illustrative SVGs, not real screenshots.
