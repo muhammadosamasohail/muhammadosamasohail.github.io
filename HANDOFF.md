@@ -1,211 +1,230 @@
-# Portfolio Website — Project Handoff
+# Portfolio Website: Handoff
 
-Paste this into a fresh Claude Code chat (working in `/Users/muhammadosamasohail/portfolio-website`) to resume with full context. Pick up at the **Outstanding / Open Items** section.
+Paused **2026-08-21** at commit `956c4ff`. Working tree clean, both remotes in sync.
 
----
-
-## 1. What This Is
-
-A single-page static portfolio website for **Muhammad Osama Sohail** (product/growth professional), built for his job search. Constraint: **zero cost** until he can afford a real domain. No backend, no build step, no framework — plain HTML/CSS/JS only.
-
-The user is not writing any code. Claude builds everything ("you're building everything for me").
+Section 9 is where to start.
 
 ---
 
-## 2. Repo & Infrastructure
+## 1. What this is
+
+A single-page static portfolio for **Muhammad Osama Sohail**, product and growth, built for a job search. Zero cost. No backend, no build step, no framework, plain HTML/CSS/JS only.
+
+The owner does not write code. Claude builds everything.
+
+## 2. Where it lives
 
 | Item | Value |
-|------|-------|
-| Local repo | `/Users/muhammadosamasohail/portfolio-website` (git initialized, branch `main`, no other branches) |
-| GitHub repo | `https://github.com/muhammadosamasohail/muhammadosamasohail.github.io` (origin) and `.../portfolio-website` (pages-old, mirror) |
+|---|---|
+| Local repo | `/Users/muhammadosamasohail/portfolio-website` |
+| **Primary URL** | `https://muhammadosamasohail.github.io/` |
+| Mirror URL | `https://portfolio-website-4fm.pages.dev/` |
+| `origin` | `github.com/muhammadosamasohail/muhammadosamasohail.github.io` (GitHub Pages) |
+| `pages-old` | `github.com/muhammadosamasohail/portfolio-website` (Cloudflare Pages) |
 | GitHub account | `muhammadosamasohail` |
-| Hosting | GitHub Pages (primary, via `.github/workflows/pages.yml`) plus Cloudflare Pages (mirror) |
-| Cloudflare output dir | `public` (NOT `/`) — set deliberately so `docs/` is never served publicly |
-| Live URL | `https://muhammadosamasohail.github.io/` (mirror still at `https://portfolio-website-4fm.pages.dev/`) |
 
-### GitHub CLI warning
-The machine has **two** `gh` CLI accounts logged in:
-- `muhammadosamasohail` (correct — use this)
-- `osamasohaila8s` (inactive, do not use)
+### Two remotes: push both, every time
 
-**Always run `gh auth status` and confirm `muhammadosamasohail` is the active account before pushing.** The active account had to be switched from `osamasohaila8s` to `muhammadosamasohail` when the repo was first created.
+```bash
+git push origin main && git push pages-old main
+```
 
-### Cloudflare subdomain note
-Cloudflare appended the `-4fm` suffix (base `portfolio-website.pages.dev` was likely taken/reserved). It **can** be renamed:
-Cloudflare dashboard → Workers & Pages → the project → Settings → General → rename project field.
-Renaming only changes the `*.pages.dev` subdomain, not the GitHub repo name. **User has not yet decided whether to rename** (open item).
+Miss one and the hosts drift. The mirror exists so links shared before the move keep working. Its canonical tag points at github.io, so search engines treat github.io as the original.
 
----
+### Before any push
 
-## 3. File Structure
+Run `gh auth status` and confirm **`muhammadosamasohail`** is active. The machine also has `osamasohaila8s` logged in, and it has been the active account before. Switch with `gh auth switch --user muhammadosamasohail`.
+
+### How GitHub Pages is wired
+
+`.github/workflows/pages.yml` uploads **only `public/`**, so `docs/` is never served. Pages is set to `build_type=workflow`.
+
+**Do not let Pages fall back to legacy branch mode.** GitHub auto-enabled it that way once. Legacy mode serves the repo root, which would publish `docs/` and serve no homepage. Verify:
+
+```bash
+gh api repos/muhammadosamasohail/muhammadosamasohail.github.io/pages --jq .build_type   # must be "workflow"
+curl -sSL -o /dev/null -w "%{http_code}" https://muhammadosamasohail.github.io/docs/     # must be 404
+```
+
+### The site URL is hardcoded in seven places
+
+`og:url`, `og:image`, `twitter:image`, `canonical`, `robots.txt`, `sitemap.xml`, and the text printed inside `assets/og-card.png`. Change them together or not at all.
+
+## 3. File structure
 
 ```
 portfolio-website/
-├── public/                          ← deployed (Cloudflare output dir)
-│   ├── index.html
-│   ├── css/style.css
-│   ├── js/main.js
-│   └── assets/resume.pdf
-└── docs/                            ← NEVER deployed
-    └── superpowers/
-        ├── specs/2026-07-08-pm-portfolio-design.md
-        └── plans/2026-07-08-pm-portfolio-implementation.md
+├── .github/workflows/pages.yml      ← uploads public/ only
+├── CLAUDE.md                        ← project instructions
+├── HANDOFF.md                       ← this file
+├── public/                          ← the deployed site
+│   ├── index.html          46.2 KB
+│   ├── 404.html             1.3 KB
+│   ├── robots.txt, sitemap.xml
+│   ├── css/style.css       19.8 KB
+│   ├── js/main.js           3.8 KB
+│   └── assets/
+│       ├── resume.pdf                182 KB
+│       ├── og-card.png               215 KB
+│       ├── headshot.jpg / @2x.jpg    17 / 57 KB
+│       └── clips/                    18 mp4 (9.38 MB) + 18 jpg (470 KB)
+└── docs/superpowers/                ← NEVER deployed
 ```
 
-`docs/` must stay out of the deployed site — this is why the Cloudflare output dir is `public` and not `/`.
+## 4. Page structure, in order
 
-The design spec and implementation plan in `docs/superpowers/` are the **authoritative detailed references** for anything not covered in this handoff.
+**Nav** (sticky) → **Hero** → **About** → **Content** → **Case Studies** → **Skills** → **Testimonials** → **Contact** → **Footer**
 
----
+Content sits above Case Studies deliberately. It is the only section with motion, it costs nothing until scrolled to, so it earns attention before anyone has to read prose.
 
-## 4. Design Decisions (Locked — Already Built)
+### Nav
+Name, five section links, a deliberately de-emphasised text "Resume" link (not a button, so visitors scroll the work before grabbing the PDF), then LinkedIn and GitHub icon buttons. Hamburger below 720px.
 
-### Visual style: Swiss / International
-- White background `#ffffff`, near-black text `#0a0a0a`, cobalt blue accent `#0033ff`.
-- **Hard edges everywhere** — `border-radius: 0` forced via `*, *::before, *::after`. No softness, no rounding.
-- Fonts: **Space Grotesk** (headings/nav) + **IBM Plex Sans** (body), both via Google Fonts CDN, no self-hosting.
+### Hero
+Two columns from **760px** up: copy left, portrait right. Stacks below that, **portrait first**. The portrait is `loading="eager"` with `fetchpriority="high"` because above the fold it is the LCP candidate.
 
-### Layout
-- Single-page scroll.
-- Sticky nav with mobile hamburger toggle (vanilla JS, no framework).
-- Nav has a **deliberately de-emphasized "Resume" text link** (not a button) in the corner — explicit design choice so visitors scroll through case studies first instead of bailing after grabbing the resume.
+Hero and About were deliberately **not merged**. The hero's job is one claim a reader grasps immediately; About's job is substance. Merged, the headline stops landing first.
 
-### Section order
-Hero → About → Case Studies (3) → Skills → Testimonials → Contact → Footer.
+### About
+Two short paragraphs plus a four item path list (Autonomous, Lean Outset, JS Bank, KSBL). Was 201 words of prose, now 142 plus the list.
 
-### Case study framework (per study)
-Problem/Context → Process → Solution → **Impact (bolded metric)** → Learnings.
+### Content
+18 clips produced for Autonomous, in three labelled groups:
+- **On camera** (9), clips the owner appears in
+- **Produced, not on camera** (8), he scripted, shot and edited, colleagues front them
+- **On LinkedIn** (1), a wide 16:9 tile
 
-The 3 case studies (all real content):
-1. **AI sentiment analysis tool** (MSBA capstone, solo) - 80% classification accuracy, 0.35s inference latency. Not public: the code is not on this machine and no repo exists on the account, so the word "open-source" was removed from the site on 2026-08-21. Re-add it only if the repo is actually published.
-2. **Autonomous organic social growth from zero** — 35K+ LinkedIn impressions, 1,100+ visitors, 400+ followers, 14.5K+ Instagram views in 90 days.
-3. **DevOps performance/financial audit data pipeline** (graduate course project, client was his own employer) - surfaced a 66.67% change failure rate, 113-min average recovery, and a 3.5x budget overrun, and recommended a feature freeze. **No freeze was ever accepted or actioned.** Earlier copy claimed leadership accepted it; corrected 2026-08-21.
+### Case Studies
+Three, each **collapsible**. Open state shows the gist only: title, badges, data figure, Impact line, 40 to 53 words. My Role, Problem, Process, Solution and Learnings sit behind a native `<details>`.
 
-### Testimonials (real, no fabrication)
-Two real LinkedIn recommendations, live with real attribution:
-- **Syeda Mahrukh Raza**, Founder of Lean Outset
-- **Ahmed Abdullah**, data/BI professional from AIESEC
+| Order | Badges | Study |
+|---|---|---|
+| 1 | `AUTONOMOUS` · `PROFESSIONAL WORK` | Building Organic Presence From Zero |
+| 2 | `KSBL MSBA` · `CAPSTONE PROJECT` | Turning Customer Feedback Into Product Signals |
+| 3 | `KSBL MSBA` · `COURSE PROJECT` | Giving Leadership a Single View of DevOps Health |
 
-No fabricated quotes were ever used. Section is intentionally lean — only add more if the user supplies additional real recommendations.
+Badges rather than two grouped sections. A hard split reads as "one real job, two school projects", which is worse than labelling each honestly.
 
-### Contact (backend-free)
-- `mailto:` link → `muhammadosamasohail99@gmail.com`
-- LinkedIn → `https://linkedin.com/in/muhammadosamasohail`
-- No contact form, no third-party form service — deliberately keeps the site backend-free.
+Data figures are built in **HTML and CSS, not SVG**, because SVG text scales with the viewBox and drops below legibility around 300px wide. Form was chosen before colour: a meter for a single ratio, stat cells for headline numbers in different units, and a two bar comparison only where both values share a unit.
 
-### Resume
-Real resume PDF copied from `/Users/muhammadosamasohail/Documents/Professional/Job-Application-Workflow/Employment/resume.pdf` → `public/assets/resume.pdf`.
+## 5. Design system (locked)
 
-### Recently added polish
-- Scroll-reveal animations (IntersectionObserver-based, respects `prefers-reduced-motion`).
-- Hover micro-interactions on buttons/cards/skill-tags.
-- Hero load-in fade animation.
-- One inline SVG flow-diagram per case study — hand-drawn in the Swiss black/blue style. These are **honest illustrative substitutes, not real screenshots** (no real product screenshots exist on the machine).
+- Swiss / International. White `#ffffff`, near-black `#0a0a0a`, cobalt `#0033ff`.
+- **Hard edges everywhere.** `border-radius: 0 !important` globally.
+- Space Grotesk (headings, nav, numbers) plus IBM Plex Sans (body), Google Fonts CDN.
+- Fluid type via `clamp()`: h1 `28→48px`, h2 `24→32px`, h3 `18→20px`.
+- Case study framework: My Role → Problem → Process → Solution → Impact → Learnings.
+- Contact stays backend-free: `mailto:` plus links, no form service.
+- Brand logos drawn in `currentColor`, never LinkedIn blue or GitHub black, so the palette stays two inks plus cobalt.
+- Meter tracks are a lighter step of the cobalt. The neutral grey is de-emphasis only, and always paired with a visible label so nothing is encoded by colour alone.
 
----
+## 6. Copy rules (hard requirements)
 
-## 5. Copy / Voice Rules (IMPORTANT)
+Owner, verbatim: **"I hate the AI slop and the em dashes."**
 
-User feedback, verbatim: **"I hate the AI slop and the em dashes."**
+- **No em dashes, anywhere.** Check with `grep -c '—' public/index.html`.
+- No AI-cliché phrasing: "unlock", "seamless", "in today's landscape", "leverage", "delve", rule-of-three patterns.
+- **Never the staccato negation pattern** ("No this. Not that.").
+- Voice: more character than a CV, without softening any claim. Curious insider, not guru.
+- Do not open a section with a technical disclaimer. An earlier Content intro led with browser autoplay policy and was rightly called terrible. Lead with the work; caveats become a small flagged note.
+- **Never invent content.** Every metric, testimonial and case study detail must come from the owner or from `~/Documents/Professional/Job-Application-Workflow/`.
 
-All site copy was rewritten to remove every em dash and every generic/formulaic AI-sounding phrase. **Any future copy added to this site must:**
-- Contain **no em dashes**.
-- Avoid AI-cliché phrasing: "in today's landscape," "unlock," "seamless," rule-of-three sentence patterns, etc.
-- Be written plainly and directly.
+### Claims removed for being untrue or unsupported
 
-### Content sourcing (no invention)
-Content for About / Case Studies / Skills was **not invented**. A Sonnet agent read the user's existing `Job-Application-Workflow` directory (resume.html, project/employment markdown, skills_matrix.md, metrics_repository.md, references.md, interview_prep.md), then an Opus agent synthesized it into final copy.
+Both caught by auditing the site against source material. Do not reintroduce either.
 
-- No confidential/NDA-flagged information used.
-- One client name (**"Silver Mirror"**) was deliberately excluded from case study copy out of caution — it's a third-party client relationship, not the user's own product.
+1. **"Leadership accepted a feature freeze"** on the DevOps study. It never happened. That work was a graduate course project which required a real client, and the owner used his own employer. Impact now says he *recommended* a freeze.
+2. **"Open-source" on the capstone.** No public repo exists on the account and the code is not on this machine. If it is ever published, the word can return and the case study should link it.
 
----
+## 7. Video pipeline
 
-## 6. Process History
+Sources live in `~/Downloads/Instagram Downloader Pro/autonomous.technologies/` (17 files) plus one pulled from LinkedIn's CDN. **They are not in the repo.**
 
-Full superpowers workflow was followed:
-1. Brainstorming
-2. Design spec (written + committed)
-3. Implementation plan (written + committed) — 12 tasks
-4. Opus adversarial red-team review of the plan, which found and fixed 2 real blockers:
-   - Resume link would have 404'd on launch.
-   - Site could have deployed with unchecked placeholder content.
-   - Both fixed via a hard **pre-launch checklist gate task** that blocks deploy until real content, resume, and contact info are all in place.
-5. Inline execution of all 12 plan tasks (all completed and committed, each with its own commit).
+Proven encode recipe:
 
-Bug fixed along the way: a zsh-incompatible `$status` variable in the checklist script (zsh treats `status` as read-only) — renamed to `check_status`.
+```bash
+ffmpeg -ss 1.5 -t 12 -i SOURCE \
+  -vf "scale=480:854:flags=lanczos,fps=24,format=yuv420p" \
+  -c:v libx264 -crf 31 -preset slow -profile:v high \
+  -c:a aac -b:a 96k -ac 2 -movflags +faststart OUT.mp4
+```
 
----
+- 151 MB of source became 9.38 MB deployed. Landscape clips use `854:480` and a `.clip-wide` 16:9 tile.
+- **Posters are chosen by scoring five candidate timestamps** on brightness and detail. Fixed-timestamp grabs landed on near-black frames and produced useless 5 KB stills.
+- Remotion exports in `~/remotion-workspace/out/` are `yuva444p12le`, 12-bit with alpha, which breaks VP9 unless you force `format=yuv420p`. They are components, not finished videos.
 
-## 7. Outstanding / Open Items (START HERE)
+### How the clip grid loads
 
-### 1. Headshot photo (action needed from user)
-User shared a professional headshot in chat (navy suit, palm-tree background) but Claude could **not** extract the binary from the chat attachment — no accessible file path was found on disk. (A search turned up only a different passport-style photo on a blue background at `/Users/muhammadosamasohail/Documents/Personal Identity/Photos/MuhammadOsamaSohail_PassportSizedPhoto.jpeg`, which the user did NOT confirm using.)
+- Posters are plain `<img loading="lazy">`, so they carry layout, work with JS off, and fetch natively only near the viewport.
+- Video carries **`data-src`, not `src`**. An IntersectionObserver assigns the real source and plays at 40% visibility. **Zero video bytes for a visitor who never scrolls there.**
+- Tiles pause, re-mute and reset when scrolled away, so 18 loops never run at once.
+- Skipped entirely under `prefers-reduced-motion`, or when the browser reports `saveData` or a 2G-class connection.
+- Sound is opt-in and exclusive: unmuting one clip mutes the rest. Clips are encoded **with** audio, so the button is real.
+- A `<button>` cannot be nested in an `<a>`, which is why each tile is a `<figure>` with a stretched link plus a separate sound button layered above it.
 
-**Action:** User must save the actual photo to
-`/Users/muhammadosamasohail/portfolio-website/public/assets/headshot.jpg`
-(Finder drag-and-drop or "Save Image As"), then tell Claude. Claude will wire it into the hero/about section with matching Swiss treatment — likely a hard-edged bordered frame, no rounded corners, possibly duotone/high-contrast to match the black/white/blue palette.
+## 8. Verification habits that caught real bugs
 
-### 2. Cloudflare subdomain rename (open decision)
-User asked if `portfolio-website-4fm.pages.dev` can be renamed — yes (see §2). User has not yet decided on a new name or whether to keep the current one.
+Keep doing these. Each one caught something that had already shipped or was about to.
 
-### 3. OG tag URL not finalized (needs a commit once decided)
-`public/index.html`'s `og:url` meta tag still says `https://portfolio-website.pages.dev` (the originally assumed URL). Real live URL is `https://portfolio-website-4fm.pages.dev/` (or whatever it becomes if renamed per item 2).
-**Action:** Correct once the final URL is settled, then commit and push (Cloudflare auto-redeploys).
+**Measure text against real font metrics.** Download the TTFs, compute widths with `fontTools`, do not eyeball. This found a skill tag needing 391px against 382px available on *every* phone size; an h1 word at 317px overflowing 320px viewports; three clip titles silently truncated by a two line clamp; and the nav overflowing by 9px at 721px once the brand buttons went in.
 
-### 4. Testimonials intentionally lean
-Only 2 real testimonials exist and are used. Do not fabricate more. Add more only if the user collects additional real recommendations.
+**Validate the HTML after every structural edit.** An unclosed `<div>` shipped once because a `str.replace` silently failed: the button used a literal `↓`, not `&darr;`.
 
-### 5. Case study visuals are illustrative diagrams
-The inline SVGs are stylized diagrams, not real screenshots. If the user later obtains real product screenshots/dashboard images, those could replace or supplement the SVGs — optional, not required.
+**Watch the shell's working directory.** Commands ran from `scratchpad/` and from `public/` on three occasions, silently writing nothing and committing nothing while appearing to succeed. Always `cd /Users/muhammadosamasohail/portfolio-website` explicitly.
 
-### 6. Deployment verification note (not a bug)
-Task 12 verification confirmed the site returns 200, and a direct `docs/` path also returns 200. This is **Cloudflare Pages' default catch-all fallback** (any unmatched path serves `index.html` with 200 — confirmed by testing a nonsense random path that also returned 200 with the homepage). It is **not** a `docs/` content leak. Cosmetically imperfect (a proper 404 page would be nicer) but not a security issue; left as-is.
+**Verify live, not locally.** Poll the deployed URL until the change appears, then check status codes and byte counts.
 
----
+**Run the dataviz palette validator before any chart colour.** It FAILED the neutral on chroma floor and lightness band, which was the useful answer: it proved the palette is emphasis plus a meter track, not categorical.
 
-## 8. How to Resume
+### Tooling gaps on this machine
 
-1. Open a new Claude Code chat in `/Users/muhammadosamasohail/portfolio-website`.
-2. Paste this document (or reference its path).
-3. Confirm `gh auth status` shows `muhammadosamasohail` active before any push.
-4. Pick up at §7 Outstanding / Open Items.
-5. Consult `docs/superpowers/specs/2026-07-08-pm-portfolio-design.md` and `docs/superpowers/plans/2026-07-08-pm-portfolio-implementation.md` for authoritative detail on anything not covered here.
+| Missing | Consequence |
+|---|---|
+| **Chrome** | **Lighthouse has never run.** Every performance figure is measured directly with curl and ffprobe. Real-device rendering is unverified. |
+| PageSpeed Insights API | anonymous daily quota exhausted |
+| poppler (`pdftoppm`) | render PDFs with `qlmanage -t` instead |
+| yt-dlp / gallery-dl | no Instagram downloading; the owner exports clips himself |
 
----
+### Instagram cannot be scraped
 
-## 9. Update log, 2026-08-21
+Post pages return a 611 KB JavaScript shell with **no `og:title` or `og:description`**, and WebFetch returns nothing. Do not send agents at those URLs. Clip titles were read from **burned-in captions in the video frames**, which is a better source anyway. Five clips whose captions were too fragmentary were titled from captions the owner pasted in directly.
 
-Audited the live site against WCAG 2.2, web.dev font guidance, and NN/g portfolio
-research, then shipped the gaps. Resolved several items from section 7.
+## 9. Open items, START HERE
 
-Shipped:
-- Keyboard focus rings. The site had none, failing WCAG 2.4.7 and 2.4.11. Skip link
-  and a `<main>` landmark added at the same time.
-- Font payload cut from 171.4 KB to 129.7 KB by dropping IBM Plex Sans 600, which no
-  rule ever used. `.case-study h4` and `.skill-tag` were asking for Space Grotesk 400,
-  which was never loaded, so they rendered a synthesized weight; both now specify 500.
-- Metric-matched fallback `@font-face` rules, with size-adjust and override values
-  computed from the real font binaries using fontTools.
-- Headshot wired into About. 2 MB source PNG became 17 KB and 58 KB JPEGs served via
-  srcset, below the fold, lazy, with fixed dimensions so it cannot shift layout.
-- "My Role" block on all three case studies. Confirmed by the owner: capstone solo,
-  DevOps a solo graduate academic project scoped for his employer, growth work solo.
-- `404.html`. Unmatched paths previously returned 200 with the home page.
-- og:image, canonical, Person JSON-LD, robots.txt, sitemap.xml.
-- Primary URL moved to `muhammadosamasohail.github.io`. GitHub linked from Contact,
-  footer, and JSON-LD sameAs. The automation case study links the real avatar-pipeline repo.
+1. **Run Lighthouse.** The single biggest gap. Paste scores from `pagespeed.web.dev`, or install Chrome. Everything else here is measured; this is not.
+2. **Fonts are the largest first-visit download**: 133 KB against a 66 KB shell, render-blocking. Self-hosting is the remaining win, though web.dev's own data says the gain is unclear, which is why it was left alone.
+3. **OG previews are cached by platforms, not broken.** The card is live and correct, verified by inspecting its pixels. If a stale preview appears, use LinkedIn Post Inspector or the Facebook Sharing Debugger, or share `?v=2` once.
+4. **Case study visuals** could use real product screenshots if any ever exist. Current figures are honest data, not mockups.
+5. **Mild remaining redundancy**, owner's call: the hero subline and About's opener circle the same instinct; Skills repeats tech named in case study Process paragraphs, which is probably worth keeping since Skills is a recruiter scan target.
+6. **Resume overlap.** The resume lists Lean Outset as Dec 2023 to Aug 2024 and JS Bank as Jul 2023 to Jul 2024, an eight month overlap. Legitimate if concurrent, but an interviewer will notice.
+7. **Testimonials are intentionally lean.** Two real LinkedIn recommendations, from Syeda Mahrukh Raza and Ahmed Abdullah. Add more only if the owner supplies real ones.
 
-Resolved from section 7: headshot (item 1), subdomain naming (item 2), og:url (item 3),
-404 behavior (item 6).
+## 10. Current measurements
 
-Still open:
-- RESOLVED 2026-08-21. The word "open-source" was dropped from both places. If the capstone
-  repo is ever published, the claim can go back, and the case study should link it.
-- RESOLVED 2026-08-21. The owner confirmed the DevOps work was a graduate course project
-  requiring a client, for which he used his own employer, and that the acceptance claim was
-  false. The claim was removed and the real audit findings were added in its place.
-- RESOLVED 2026-08-21. Those metrics are now in the DevOps Impact block.
-- PageSpeed Insights was never run. The public API quota was exhausted and there is no
-  Chrome on this machine for local Lighthouse.
-- Case study visuals are still illustrative SVGs, not real screenshots.
+| | |
+|---|---|
+| Critical shell | **65.9 KB** (46 HTML + 20 CSS + 4 JS) |
+| Google Fonts | 133 KB, render-blocking, 4 latin woff2 |
+| Clip posters | 470 KB, lazy |
+| Clip video | 9.38 MB, per tile on view, skipped on data-saver |
+| Full-scroll worst case | ~9.9 MB |
+| Worst text contrast | **5.25:1** (footer) against a 4.5:1 requirement |
+| Overflow at 320 / 360 / 375 / 390 / 430px | none |
+| iframes and third-party embeds | **0** |
+| Em dashes | **0** |
+
+## 11. What happened this session
+
+19 commits, `2023223` to `956c4ff`.
+
+- **Accessibility**: the site had **no keyboard focus indicator at all**, failing WCAG 2.4.7 and 2.4.11. Added focus rings, a skip link and a `<main>` landmark.
+- **Fonts**: dropped IBM Plex Sans 600, used by no rule, saving 40,240 bytes. `.case-study h4` and `.skill-tag` were requesting an unloaded Space Grotesk 400 and rendering a synthesized faux weight; both now specify 500. Added fallback `@font-face` metrics computed from the real font binaries.
+- **Mobile**: fixed overflow affecting every phone size, made type fluid, stopped the clip grid collapsing to a single column at 320px.
+- **Moved to `muhammadosamasohail.github.io`** from a `pages.dev` URL carrying a random `-4fm` suffix.
+- **Removed two false or unsupported claims**, see section 6.
+- **Built the Content section**: 18 clips, sound control, hover affordance, three honest groups.
+- **Replaced the LinkedIn iframe** with a self-hosted clip. LinkedIn sends `frame-ancestors *` and no `X-Frame-Options`, so nothing server-side blocked it, but it rendered as an empty box in the owner's browser, which points at a blocking extension. There are now zero iframes.
+- **Replaced case study flowcharts** with data figures, and separated academic from professional work with badges.
+- **Made case studies collapsible**, cutting visible text per study from about 275 words to about 45.
+- **Cleaned up a dead GitHub account**: `muhammadosamasohail99` was renamed to `muhammadosamasohail`. Rewrote 9 documentation references and rewired 3 broken git remotes across other repos. The gmail address `muhammadosamasohail99@gmail.com` contains "99" but is **not** the account, and was deliberately left untouched.
+- **Rewrote copy** for more character without softening claims, and cut duplicated content: Impact lines were restating the figures directly above them, and one phrase appeared three times.
