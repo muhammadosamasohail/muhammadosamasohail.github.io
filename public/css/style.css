@@ -345,17 +345,6 @@ footer {
   animation: hero-fade-up 0.6s ease 0.2s both;
 }
 
-.cs-diagram {
-  margin-bottom: var(--space-3);
-}
-
-.cs-diagram svg {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-width: 480px;
-}
-
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 
@@ -740,5 +729,176 @@ img, video, iframe, svg {
 @media (max-width: 400px) {
   .clip-label {
     -webkit-line-clamp: 3;
+  }
+}
+
+/* Case study data figures. Built in HTML rather than SVG so the type stays at
+   real CSS sizes instead of scaling down with a viewBox. Every value is printed
+   next to its mark, so nothing is encoded by colour alone. */
+:root {
+  --fig-track: #d9e0ff;   /* a lighter step of the cobalt, per meter spec */
+  --fig-muted: #c9c9c9;   /* de-emphasis only, always paired with a label */
+  --fig-rule: #ededed;
+}
+
+.cs-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  margin: 0 0 var(--space-2) 0;
+}
+
+.cs-org,
+.cs-kind {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 7px;
+  border: 2px solid var(--color-text);
+}
+
+.cs-org {
+  background: var(--color-text);
+  color: #ffffff;
+}
+
+.cs-kind {
+  color: var(--color-text);
+}
+
+.cs-figure {
+  display: grid;
+  gap: var(--space-3);
+  border: 2px solid var(--color-text);
+  background: var(--color-bg);
+  padding: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.fig-title {
+  margin: 0;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.fig-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(104px, 1fr));
+  gap: var(--space-2);
+}
+
+.fig-stat {
+  display: flex;
+  flex-direction: column;
+  border-left: 3px solid var(--color-accent);
+  padding-left: 10px;
+}
+
+.fig-stat-value {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(19px, 4.5vw, 25px);
+  line-height: 1.1;
+}
+
+.fig-stat-label {
+  font-size: 12px;
+  opacity: 0.7;
+  margin-top: 3px;
+}
+
+.fig-meter-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 4px var(--space-2);
+  margin-bottom: 6px;
+}
+
+.fig-meter-label {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.fig-meter-value {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(17px, 4vw, 21px);
+  white-space: nowrap;
+}
+
+.fig-track {
+  display: block;
+  height: 10px;
+  background: var(--fig-track);
+}
+
+.fig-track-fill {
+  display: block;
+  height: 100%;
+  background: var(--color-accent);
+}
+
+.fig-bars {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.fig-bar-row {
+  display: grid;
+  grid-template-columns: 118px 1fr auto;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.fig-bar-label {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.fig-bar-track {
+  display: block;
+  height: 12px;
+  background: var(--fig-rule);
+}
+
+.fig-bar {
+  display: block;
+  height: 100%;
+  background: var(--fig-muted);
+}
+
+.fig-bar.is-accent {
+  background: var(--color-accent);
+}
+
+.fig-bar-value {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+/* Below 560px the three column bar row cannot hold a 118px label, a track and a
+   value, so the track drops to its own line. */
+@media (max-width: 560px) {
+  .fig-bar-row {
+    grid-template-columns: 1fr auto;
+    gap: var(--space-1) var(--space-2);
+  }
+
+  .fig-bar-label { grid-column: 1; grid-row: 1; }
+  .fig-bar-value { grid-column: 2; grid-row: 1; text-align: right; }
+  .fig-bar-track { grid-column: 1 / -1; grid-row: 2; }
+
+  .cs-figure {
+    padding: var(--space-2);
   }
 }
