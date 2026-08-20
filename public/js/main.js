@@ -30,7 +30,12 @@ if (!prefersReducedMotion && 'IntersectionObserver' in window) {
 
 // Clip loops. Nothing downloads until a tile is on screen, and each one pauses
 // again when it scrolls away so a wall of video does not chew through battery.
-if ('IntersectionObserver' in window && !prefersReducedMotion) {
+// Respect an explicit data-saver preference and genuinely slow connections.
+// Scrolling the whole grid would otherwise pull several megabytes of video.
+var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+var saveData = !!(conn && (conn.saveData || /^(slow-2g|2g)$/.test(conn.effectiveType || '')));
+
+if ('IntersectionObserver' in window && !prefersReducedMotion && !saveData) {
   var clipObserver = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
       var clip = entry.target;

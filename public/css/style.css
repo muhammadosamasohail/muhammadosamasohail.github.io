@@ -734,3 +734,11 @@ img, video, iframe, svg {
 .clip-grid-wide {
   display: block;
 }
+
+/* On 320px screens the narrower tile pushes three titles past two lines, and
+   the clamp was hiding the tail. Three lines is 54px of a 235px tile. */
+@media (max-width: 400px) {
+  .clip-label {
+    -webkit-line-clamp: 3;
+  }
+}
