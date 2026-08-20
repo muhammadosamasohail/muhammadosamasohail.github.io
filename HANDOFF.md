@@ -79,7 +79,7 @@ Problem/Context → Process → Solution → **Impact (bolded metric)** → Lear
 The 3 case studies (all real content):
 1. **Open-source AI sentiment analysis tool** (MSBA capstone) — 80% classification accuracy, 0.35s inference latency.
 2. **Autonomous organic social growth from zero** — 35K+ LinkedIn impressions, 1,100+ visitors, 400+ followers, 14.5K+ Instagram views in 90 days.
-3. **DevOps performance/financial audit data pipeline** — surfaced 66.67% change failure rate and 3.5x budget overrun; directly led to an accepted feature-freeze recommendation.
+3. **DevOps performance/financial audit data pipeline** (graduate course project, client was his own employer) - surfaced a 66.67% change failure rate, 113-min average recovery, and a 3.5x budget overrun, and recommended a feature freeze. **No freeze was ever accepted or actioned.** Earlier copy claimed leadership accepted it; corrected 2026-08-21.
 
 ### Testimonials (real, no fabrication)
 Two real LinkedIn recommendations, live with real attribution:
@@ -202,10 +202,10 @@ Resolved from section 7: headshot (item 1), subdomain naming (item 2), og:url (i
 Still open:
 - The site calls the capstone "open-source" in About and in case study 1, but no public
   capstone repo exists on the account. Either publish it or drop the word.
-- The DevOps case study says leadership accepted a recommended feature freeze. If that
-  project was academic, confirm the freeze actually happened before an interviewer asks.
-- Real metrics available but unused in the DevOps Impact block: 113-min average recovery
-  time, 5 to 7 deploys per week, $10,623 versus roughly $3K average project budget.
+- RESOLVED 2026-08-21. The owner confirmed the DevOps work was a graduate course project
+  requiring a client, for which he used his own employer, and that the acceptance claim was
+  false. The claim was removed and the real audit findings were added in its place.
+- RESOLVED 2026-08-21. Those metrics are now in the DevOps Impact block.
 - PageSpeed Insights was never run. The public API quota was exhausted and there is no
   Chrome on this machine for local Lighthouse.
 - Case study visuals are still illustrative SVGs, not real screenshots.
